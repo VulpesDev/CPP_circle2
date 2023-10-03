@@ -1,6 +1,6 @@
 {
-    "C_Cpp.errorSquiggles": "Enabled",
-    "C_Cpp.autocomplete": "Enabled",
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.autocomplete": "default",
     "files.associations": {
         "array": "cpp",
         "atomic": "cpp",
