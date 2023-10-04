@@ -19,8 +19,9 @@ class AForm
 
 		std::string	getName() const;
 		bool		getSign() const;
-		int		getReqsign() const;
-		int		getReqexec() const;
+		int			getReqsign() const;
+		int			getReqexec() const;
+		std::string getTarget() const;
 
 		std::ostream&	print(std::ostream& os) const;
 		
@@ -52,6 +53,9 @@ class AForm
 		bool				sign;
 		const int			reqsign;
 		const int			reqexec;
+
+	protected:
+		std::string	target;
 
 };
 

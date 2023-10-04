@@ -98,6 +98,9 @@ std::ostream &			operator<<( std::ostream & o, AForm const & i )
 	{
 		return reqexec;
 	}
-
+	std::string AForm::getTarget() const
+	{
+		return target;
+	}
 
 /* ************************************************************************** */

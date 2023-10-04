@@ -13,15 +13,13 @@ class ShrubberyCreationForm : public AForm
 
 	public:
 
-		ShrubberyCreationForm(std::string name);
+		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm( ShrubberyCreationForm const & src );
 		~ShrubberyCreationForm();
 
 		ShrubberyCreationForm &		operator=( ShrubberyCreationForm const & rhs );
 
 		void	execute( Bureaucrat const & executor ) const override;
-
-		std::string getTarget();
 
 		class FileCreationException : public std::exception {
 			public :
@@ -31,7 +29,6 @@ class ShrubberyCreationForm : public AForm
 		};
 
 	private:
-		std::string	target;
 };
 
 //std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i );

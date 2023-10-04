@@ -4,9 +4,9 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137), target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137)
 {
-	
+	this->target = target;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src ) : AForm(src)
@@ -79,10 +79,5 @@ std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
-
-	std::string ShrubberyCreationForm::getTarget()
-	{
-		return target;
-	}
 
 /* ************************************************************************** */
