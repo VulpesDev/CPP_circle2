@@ -3,6 +3,9 @@
 
 # include <iostream>
 # include <string>
+#include <iostream>
+#include <fstream>
+
 # include "AForm.hpp"
 
 class ShrubberyCreationForm : public AForm
@@ -16,8 +19,19 @@ class ShrubberyCreationForm : public AForm
 
 		ShrubberyCreationForm &		operator=( ShrubberyCreationForm const & rhs );
 
-	private:
+		void	execute( Bureaucrat const & executor ) const override;
 
+		std::string getTarget();
+
+		class FileCreationException : public std::exception {
+			public :
+				const char* what() const noexcept override{
+					return "Could not create a file, sorry";
+				}
+		};
+
+	private:
+		std::string	target;
 };
 
 //std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i );

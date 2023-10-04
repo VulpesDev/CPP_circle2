@@ -69,13 +69,13 @@ std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 			throw GradeTooLowException();
 	}
 
-	void		Bureaucrat::signForm( AForm & rhs )
+	void		Bureaucrat::signForm( AForm & rhs ) const
 	{
 		try
 		{
 			rhs.beSigned(*this);
 			if (rhs.getSign())
-				std::cout << name << " signed " << rhs.getName();
+				std::cout << name << " signed " << rhs.getName() << std::endl;
 			else
 				std::cout << name << " couldn't sign " << rhs.getName() << " because unknown" << std::endl;
 		}
@@ -85,6 +85,18 @@ std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 		}
 		
 
+	}
+
+	void		Bureaucrat::executeForm(AForm const & form) const
+	{
+		try{
+			form.execute(*this);
+			std::cout << name << " executed " << form.getName() << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << "Execution error: " << e.what() << std::endl;
+		}
 	}
 
 /*

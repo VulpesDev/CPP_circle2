@@ -68,6 +68,13 @@ std::ostream &			operator<<( std::ostream & o, AForm const & i )
 			throw GradeTooLowException();
 	}
 
+	void	AForm::execute( Bureaucrat const & executor ) const
+	{
+		if (executor.getGrade() > reqexec)
+			throw GradeTooLowException();
+		else if (!sign)
+			throw FormNotSignedException();
+	}
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

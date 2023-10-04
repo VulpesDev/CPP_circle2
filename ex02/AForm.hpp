@@ -22,8 +22,10 @@ class AForm
 		int		getReqsign() const;
 		int		getReqexec() const;
 
-		void	beSigned( Bureaucrat const & rhs );
 		std::ostream&	print(std::ostream& os) const;
+		
+		void	beSigned( Bureaucrat const & rhs );
+		virtual void	execute( Bureaucrat const & executor ) const;
 
 		class GradeTooHighException : public std::exception {
 			public :
@@ -35,6 +37,12 @@ class AForm
 			public :
 				const char* what() const noexcept override{
 					return "Grade is too low";
+				}
+		};
+		class FormNotSignedException : public std::exception {
+			public :
+				const char* what() const noexcept override{
+					return "Form is not signed";
 				}
 		};
 		
