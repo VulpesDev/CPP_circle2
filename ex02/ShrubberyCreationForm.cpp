@@ -36,12 +36,6 @@ ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationFo
 	return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
-{
-	i.AForm::print(o);
-	return o;
-}
-
 
 /*
 ** --------------------------------- METHODS ----------------------------------

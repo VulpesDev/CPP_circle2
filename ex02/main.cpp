@@ -3,6 +3,7 @@
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 // int	main( void )
 // {
@@ -54,12 +55,26 @@
 //  	return (0);
 //  }
 
+//    int	main( void )
+// {
+// 	Bureaucrat	nasty("Nasty", 149);
+// 	Bureaucrat	steve("Steve", 55);
+// 	Bureaucrat	pete("Pete", 44);
+// 	RobotomyRequestForm r("home");
+// 	std::cout << r << std::endl;
+// 	nasty.signForm(r);
+// 	steve.signForm(r);
+// 	steve.executeForm(r);
+// 	pete.executeForm(r);
+//  	return (0);
+//  }
+
    int	main( void )
 {
 	Bureaucrat	nasty("Nasty", 149);
-	Bureaucrat	steve("Steve", 55);
-	Bureaucrat	pete("Pete", 44);
-	RobotomyRequestForm r("home");
+	Bureaucrat	steve("Steve", 22);
+	Bureaucrat	pete("Pete", 1);
+	PresidentialPardonForm r("home");
 	std::cout << r << std::endl;
 	nasty.signForm(r);
 	steve.signForm(r);
