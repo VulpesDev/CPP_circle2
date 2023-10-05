@@ -6,7 +6,6 @@
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("robotomy request", 72, 45)
 {
-	std::cout << "*drilling noises*" << std::endl;
 	this->target = target;
 }
 

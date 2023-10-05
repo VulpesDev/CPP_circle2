@@ -53,7 +53,7 @@ std::ostream &			operator<<( std::ostream & o, Intern const & i )
 		{
 			"shrubbery creation",
 			"robotomy request",
-			"presidental pardon"
+			"presidential pardon"
 		};
 
 		AForm*	forms[] =
@@ -64,18 +64,18 @@ std::ostream &			operator<<( std::ostream & o, Intern const & i )
 		};
 		for (size_t i = 0; i < 3; i++)
 		{
-			if (types[i] == forms[i]->getName())
+			if (types[i] == name)
 			{
 				cori = i; ret = true;
 			}
 		}
-		if (ret)
-		{
-			for (size_t i = 0; i < 3; i++)
+		for (size_t i = 0; i < 3; i++)
 				if (i != cori)
 					delete(forms[i]);
+		if (ret)
 			return forms[cori];
-		}
+		else
+			delete(forms[cori]);
 		throw FormNameException();
 		
 	}

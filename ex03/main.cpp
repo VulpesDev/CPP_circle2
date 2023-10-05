@@ -86,9 +86,24 @@
 
    int	main( void )
 {
+	Bureaucrat	boss("Kurt", 1);
 	Intern someRandomIntern;
 	AForm* rrf;
+	AForm* pres;
+	AForm* shrub;
+	AForm* thub;
+
 	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	pres = someRandomIntern.makeForm("presidential pardon", "Cooper");
+	shrub = someRandomIntern.makeForm("shrubbery creation", "home");
+	thub = someRandomIntern.makeForm("thub", "t");
+	
+	boss.signForm(*shrub);
+	boss.signForm(*pres);
+	boss.executeForm(*shrub);
+	boss.executeForm(*pres);
 	delete(rrf);
+	delete(shrub);
+	delete(pres);
  	return (0);
  }
