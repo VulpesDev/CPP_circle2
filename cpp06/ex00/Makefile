@@ -4,7 +4,7 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 NAME = run
 
-SRC = main.cpp ScalarConverter.cpp
+SRC = main.cpp ScalarConverter.cpp IntValueConverter.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
