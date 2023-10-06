@@ -21,52 +21,21 @@ IntValueConverter::IntValueConverter(std::string s)
 	}
 	catch(const std::exception& e)
 	{
-		//std::cerr << "Error: " << e.what() << std::endl;
 		value = 0;
-		if (s == "nan")
-			s_rep << "impossible";
+		s_rep << "impossible";
 	}
-	
 }
 
-IntValueConverter::IntValueConverter( const IntValueConverter & src )
+IntValueConverter::IntValueConverter(IntValueConverter const & src)
 {
+	value = src.value;
 }
 
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
-
-IntValueConverter::~IntValueConverter()
+IntValueConverter &	IntValueConverter::operator=(IntValueConverter const & rhs)
 {
-}
-
-
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
-
-IntValueConverter &				IntValueConverter::operator=( IntValueConverter const & rhs )
-{
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	value = rhs.value;
 	return *this;
 }
-
-std::ostream &			operator<<( std::ostream & o, IntValueConverter const & i )
-{
-	o << i.getS_rec();
-	return o;
-}
-
-
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
@@ -75,11 +44,6 @@ std::ostream &			operator<<( std::ostream & o, IntValueConverter const & i )
 int	IntValueConverter::getValue() const
 {
 	return value;
-}
-
-std::string	IntValueConverter::getS_rec() const
-{
-	return s_rep.str();
 }
 
 /* ************************************************************************** */
