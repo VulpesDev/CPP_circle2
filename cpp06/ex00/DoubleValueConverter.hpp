@@ -14,7 +14,7 @@ class DoubleValueConverter : public AValueConverter
 
 		double	getValue() const;
 	private:
-		float value;
+		double value;
 
 };
 

@@ -7,23 +7,18 @@
 IntValueConverter::IntValueConverter(std::string s)
 {
 	s_rep << "int: ";
-	try
-	{
-		value = std::stoi(s);
-		s_rep << value;
-	}
-	catch(const std::out_of_range& e)
-	{
-		if (s.at(0) == '-')
-			s_rep << "-inf";
-		else
-			s_rep << "+inf";
-	}
-	catch(const std::exception& e)
+	value = std::atoi(s.c_str());
+	if (s.at(0) == '-' && s.length() > 11)
+		s_rep << "-inf";
+	else if (s.at(0) != '-' && s.length() > 10)
+		s_rep << "+inf";
+	else if (s == "nan")
 	{
 		value = 0;
-		s_rep << "impossible";
+		s_rep << "nan";
 	}
+	else
+		s_rep << value;
 }
 
 IntValueConverter::IntValueConverter(IntValueConverter const & src)

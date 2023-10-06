@@ -6,14 +6,14 @@ NAME = run
 
 SRC = main.cpp ScalarConverter.cpp IntValueConverter.cpp \
  AValueConverter.cpp FloatValueConverter.cpp \
- DoubleValueConverter.cpp
+ DoubleValueConverter.cpp CharValueConverter.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
 .cpp.o:
-	$(CC) -g3 -c $< -o $@
+	$(CC) $(CFLAGS) -g3 -c $< -o $@
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)

@@ -7,23 +7,18 @@
 DoubleValueConverter::DoubleValueConverter(std::string s)
 {
 	s_rep << "double: ";
-	try
-	{
-		value = std::stod(s);
-		s_rep << std::fixed << std::setprecision(1) << value;
-	}
-	catch(const std::out_of_range& e)
-	{
-		if (s.at(0) == '-')
-			s_rep << "-inf";
-		else
-			s_rep << "+inf";
-	}
-	catch(const std::exception& e)
+	value = std::atof(s.c_str());
+	if (s.at(0) == '-' && s.length() > 11)
+		s_rep << "-inf";
+	else if (s.at(0) != '-' && s.length() > 10)
+		s_rep << "+inf";
+	else if (s == "nan")
 	{
 		value = 0;
 		s_rep << "nan";
 	}
+	else
+		s_rep << value;
 }
 
 DoubleValueConverter::DoubleValueConverter( const DoubleValueConverter & src )
