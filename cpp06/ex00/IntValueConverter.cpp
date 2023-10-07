@@ -8,15 +8,15 @@ IntValueConverter::IntValueConverter(std::string s)
 {
 	s_rep << "int: ";
 	value = std::atoi(s.c_str());
+	if (!value)
+	{
+		s_rep << "impossible";
+		return;
+	}
 	if (s.at(0) == '-' && s.length() > 11)
 		s_rep << "-inf";
 	else if (s.at(0) != '-' && s.length() > 10)
 		s_rep << "+inf";
-	else if (s == "nan")
-	{
-		value = 0;
-		s_rep << "nan";
-	}
 	else
 		s_rep << value;
 }
