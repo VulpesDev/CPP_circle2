@@ -34,7 +34,8 @@ AForm::~AForm()
 
 AForm &				AForm::operator=( AForm const & rhs )
 {
-	sign = rhs.getSign();
+	if (this != &rhs)
+		sign = rhs.getSign();
 	return *this;
 }
 

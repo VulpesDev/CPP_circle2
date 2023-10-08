@@ -34,7 +34,8 @@ Form::~Form()
 
 Form &				Form::operator=( Form const & rhs )
 {
-	sign = rhs.getSign();
+	if (this != &rhs)
+		sign = rhs.getSign();
 
 	return *this;
 }

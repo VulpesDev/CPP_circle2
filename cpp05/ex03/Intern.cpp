@@ -4,13 +4,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Intern::Intern() : ran(0)
+Intern::Intern()
 {
 }
 
 Intern::Intern( const Intern & src )
 {
-	ran = src.ran;
+	*this = src;
 }
 
 
@@ -31,14 +31,14 @@ Intern &				Intern::operator=( Intern const & rhs )
 {
 	if ( this != &rhs )
 	{
-		this->ran = rhs.ran;
+		;
 	}
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, Intern const & i )
 {
-	o << "Value = " << i.getRan();
+		o << "Intern: " << &i;
 	return o;
 }
 
@@ -97,11 +97,6 @@ std::ostream &			operator<<( std::ostream & o, Intern const & i )
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
-
-int	Intern::getRan() const
-{
-	return ran;
-}
 
 
 /* ************************************************************************** */

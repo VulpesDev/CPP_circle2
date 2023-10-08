@@ -34,11 +34,6 @@ class Intern
 			robotomyRequest,
 			presidentalPardon
 		};
-
-		int	getRan() const;
-
-	private:
-		int	ran;
 };
 
 std::ostream &			operator<<( std::ostream & o, Intern const & i );
