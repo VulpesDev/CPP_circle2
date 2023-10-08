@@ -13,7 +13,7 @@ class AForm
 
 		AForm(std::string name, int reqsign, int reqexec);
 		AForm( AForm const & src );
-		~AForm();
+		virtual ~AForm();
 
 		AForm &		operator=( AForm const & rhs );
 

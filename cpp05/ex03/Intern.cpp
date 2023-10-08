@@ -4,12 +4,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Intern::Intern()
+Intern::Intern() : ran(0)
 {
 }
 
 Intern::Intern( const Intern & src )
 {
+	ran = src.ran;
 }
 
 
@@ -28,16 +29,16 @@ Intern::~Intern()
 
 Intern &				Intern::operator=( Intern const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->ran = rhs.ran;
+	}
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, Intern const & i )
 {
-	//o << "Value = " << i.getValue();
+	o << "Value = " << i.getRan();
 	return o;
 }
 
@@ -48,7 +49,7 @@ std::ostream &			operator<<( std::ostream & o, Intern const & i )
 
 	AForm *	Intern::checkMakeForm(std::string name, std::string target) const
 	{
-		bool ret = false; int cori = 0;
+		bool ret = false; size_t cori = 0;
 		std::string	types[] =
 		{
 			"shrubbery creation",
@@ -96,6 +97,11 @@ std::ostream &			operator<<( std::ostream & o, Intern const & i )
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
+
+int	Intern::getRan() const
+{
+	return ran;
+}
 
 
 /* ************************************************************************** */

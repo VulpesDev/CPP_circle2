@@ -35,7 +35,8 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 	void	ShrubberyCreationForm::execute( Bureaucrat const & executor ) const
 	{
 		AForm::execute(executor);
-		std::ofstream	out(target + "_shrubbery");
+		std::string	filename = target + "_shrubbery";
+		std::ofstream	out(filename.c_str());
 		int				levels = 5;
 		char			trunkChar = '|';
 		char			leafChar = '*';

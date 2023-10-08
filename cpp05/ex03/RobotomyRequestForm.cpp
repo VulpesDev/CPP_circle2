@@ -36,7 +36,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
 	void	RobotomyRequestForm::execute( Bureaucrat const & executor ) const
 	{
 		AForm::execute(executor);
-		std::srand(static_cast<unsigned int>(std::time(nullptr)));
+		std::srand(static_cast<unsigned int>(std::time(NULL)));
 		int rand = std::rand() % 2;
 
 		if (rand)
