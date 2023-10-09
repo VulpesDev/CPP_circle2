@@ -4,6 +4,8 @@
 #include "C.hpp"
 
 
+
+
 Base::~Base()
 {
 
@@ -14,12 +16,25 @@ void Base::getType()
 
 }
 
+int	Base::generateRdmN(int numbers)
+{
+	uint8_t	randomByte;
+	ssize_t	result = syscall(SYS_getrandom, &randomByte, sizeof(randomByte), 0);
+	if (result == sizeof(randomByte))
+	{
+		return randomByte % numbers;
+	}
+	else
+	{
+		throw FatalException();
+	}
+}
+
 Base * Base::generate(void)
 {
 	Base * result;
-	std::srand(static_cast<unsigned int>(std::time(NULL)));
 
-	int randomN = std::rand() % 3;
+	int randomN = generateRdmN(3);
 
 	switch (randomN)
 	{

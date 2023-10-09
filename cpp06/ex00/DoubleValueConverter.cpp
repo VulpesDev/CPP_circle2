@@ -7,15 +7,16 @@
 DoubleValueConverter::DoubleValueConverter(std::string s)
 {
 	s_rep << "double: ";
+	long v = std::atol(s.c_str());
 	value = std::atof(s.c_str());
-	if (!value)
+	if (!value || !v)
 	{
 		s_rep << "nan";
 		return;
 	}
-	if (s.at(0) == '-' && s.length() > 11)
+	if (s.at(0) == '-' && (s.length() > 11 || v < -2147483648))
 		s_rep << "-inf";
-	else if (s.at(0) != '-' && s.length() > 10)
+	else if (s.at(0) != '-' && (s.length() > 10 || v > 2147483647))
 		s_rep << "+inf";
 	else
 		s_rep << value;
