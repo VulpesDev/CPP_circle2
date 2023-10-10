@@ -2,11 +2,14 @@
 # define SPAN_HPP
 
 # include <set>
+# include <algorithm>
+# include <iterator>
+# include <iostream>
 
 class Span
 {
 private:
-	int					maxsize;
+	unsigned int		maxsize;
 	std::multiset<int>	set;
 public:
 	Span( unsigned int N );
@@ -17,20 +20,17 @@ public:
 	int		longestSpan(void);
 
 	class OutOfBoundException : public std::exception {
-			public :
-				const char* what() const throw(){
-					return "Out Of Bound";
-				}
-		};
+		public :
+			const char* what() const throw(){
+				return "Out Of Bound";
+			}
+	};
+	class TooShortException : public std::exception {
+		public :
+			const char* what() const throw(){
+				return "Stored values are not enough";
+			}
+	};
 };
-
-Span::Span(unsigned int N)
-{
-}
-
-Span::~Span()
-{
-}
-
 
 #endif
