@@ -99,7 +99,7 @@ std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
 							std::multimap<std::string, std::string> &result,
 							char denom)
 	{
-		std::ifstream inputFile(filename);
+		std::ifstream inputFile(filename.c_str());
    		 if (!inputFile.is_open()) {
    		     std::cerr << "Error: Could not open the file." << std::endl;
    		     return;

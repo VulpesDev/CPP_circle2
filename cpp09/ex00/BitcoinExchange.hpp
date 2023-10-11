@@ -7,6 +7,7 @@
 # include <string>
 # include <sstream>
 # include <climits>
+# include <stdlib.h>
 
 class BitcoinExchange
 {

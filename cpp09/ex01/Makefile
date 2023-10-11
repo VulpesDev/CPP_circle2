@@ -1,10 +1,10 @@
 CC = c++
 
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = 
 
-NAME = btc
+NAME = RPN
 
-SRC = main.cpp BitcoinExchange.cpp
+SRC = main.cpp RPN.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
