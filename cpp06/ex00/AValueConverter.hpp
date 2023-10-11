@@ -6,6 +6,7 @@
 # include <iomanip>
 # include <sstream>
 # include <cstdlib>
+# include <climits>
 
 class AValueConverter
 {

@@ -8,7 +8,7 @@ CharValueConverter::CharValueConverter(std::string s)
 {
 	s_rep << "char: ";
 	value = std::atoi(s.c_str());
-	if (!value)
+	if (!value && s.at(0) != '0')
 	{
 		s_rep << "impossible";
 		return;

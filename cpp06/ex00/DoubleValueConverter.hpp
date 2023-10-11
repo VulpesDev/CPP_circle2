@@ -2,6 +2,9 @@
 # define DOUBLEVALUECONVERTER_HPP
 
 # include "AValueConverter.hpp"
+# include <cmath>
+# include <cfloat>
+# include <string>
 
 class DoubleValueConverter : public AValueConverter
 {

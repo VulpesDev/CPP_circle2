@@ -2,7 +2,7 @@ CC = c++
 
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-NAME = run
+NAME = convert
 
 SRC = main.cpp ScalarConverter.cpp IntValueConverter.cpp \
  AValueConverter.cpp FloatValueConverter.cpp \

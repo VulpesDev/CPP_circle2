@@ -6,20 +6,20 @@
 
 DoubleValueConverter::DoubleValueConverter(std::string s)
 {
+	s_rep << std::fixed << std::setprecision(1);
 	s_rep << "double: ";
-	long v = std::atol(s.c_str());
-	value = std::atof(s.c_str());
-	if (!value || !v)
-	{
+	value = std::strtold(s.c_str(), 0);
+	if (std::isnan(value) || (!value && s.at(0) != '0'))
 		s_rep << "nan";
-		return;
+	else if (std::isinf(value))
+	{
+		if (s.at(0) == '-')
+			s_rep << "-inf";
+		else
+			s_rep << "+inf";
 	}
-	if (s.at(0) == '-' && (s.length() > 11 || v < -2147483648))
-		s_rep << "-inf";
-	else if (s.at(0) != '-' && (s.length() > 10 || v > 2147483647))
-		s_rep << "+inf";
 	else
-		s_rep << value;
+		s_rep << (double)value;
 }
 
 DoubleValueConverter::DoubleValueConverter( const DoubleValueConverter & src )

@@ -9,14 +9,14 @@ IntValueConverter::IntValueConverter(std::string s)
 	s_rep << "int: ";
 	long	v = std::atol(s.c_str());
 	value = std::atoi(s.c_str());
-	if (!value)
+	if (!value && s.at(0) != '0')
 	{
 		s_rep << "impossible";
 		return;
 	}
-	if (s.at(0) == '-' && (s.length() > 11 || v < -2147483648))
+	if (s.at(0) == '-' && (s.length() > 11 || v < INT_MIN))
 		s_rep << "-inf";
-	else if (s.at(0) != '-' && (s.length() > 10 || v > 2147483647))
+	else if (s.at(0) != '-' && (s.length() > 10 || v > INT_MAX))
 		s_rep << "+inf";
 	else
 		s_rep << value;

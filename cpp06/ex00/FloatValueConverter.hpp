@@ -2,6 +2,9 @@
 # define FLOATVALUECONVERTER_HPP
 
 # include "AValueConverter.hpp"
+# include <cmath>
+# include <cfloat>
+# include <string>
 
 class FloatValueConverter : public AValueConverter
 {
@@ -13,7 +16,7 @@ class FloatValueConverter : public AValueConverter
 		FloatValueConverter &	operator=(FloatValueConverter const & rhs);
 		float	getValue() const;
 	private:
-		float value;
+		long double value;
 
 };
 

@@ -6,20 +6,20 @@
 
 FloatValueConverter::FloatValueConverter(std::string s)
 {
+	s_rep << std::fixed << std::setprecision(1);
 	s_rep << "float: ";
-	long	v = std::atol(s.c_str());
-	value = std::atof(s.c_str());
-	if (!value)
-	{
+	value = std::strtold(s.c_str(), 0);
+	if (std::isnan(value) || (!value && s.at(0) != '0'))
 		s_rep << "nanf";
-		return;
+	else if (std::isinf(value))
+	{
+		if (s.at(0) == '-')
+			s_rep << "-inff";
+		else
+			s_rep << "+inff";
 	}
-	if (s.at(0) == '-' && (s.length() > 11 || v < -2147483648))
-		s_rep << "-inff";
-	else if (s.at(0) != '-' && (s.length() > 10 || v > 2147483647))
-		s_rep << "+inff";
 	else
-		s_rep << value << "f";
+		s_rep << (double)value << "f";
 }
 
 FloatValueConverter::FloatValueConverter(FloatValueConverter const & src)
