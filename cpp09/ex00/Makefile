@@ -1,0 +1,25 @@
+CC = c++
+
+CFLAGS = 
+
+NAME = btc
+
+SRC = main.cpp BitcoinExchange.cpp
+
+OBJ = $(SRC:.cpp=.o)
+
+all: $(NAME)
+
+.cpp.o:
+	$(CC) $(CFLAGS) -g3 -c $< -o $@
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+clean:
+	-rm -f $(OBJ)
+
+fclean: clean
+	-rm -f $(NAME)
+
+re: fclean all
