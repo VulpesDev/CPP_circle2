@@ -11,6 +11,12 @@ int	main()
 	b.identify(r);
 	b.identify(r1);
 	b.identify(r2);
+	std::cout << "Phase2" << std::endl;
+	b.identify(*r);
+	b.identify(*r1);
+	b.identify(*r2);
 	delete(r);
+	delete(r1);
+	delete(r2);
 	return (0);
 }

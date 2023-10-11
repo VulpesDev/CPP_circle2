@@ -22,11 +22,12 @@ class	Base
 					return "Some core function failed -_-";
 				}
 		};
-
-	protected:
-		virtual void getType();
 	private:
 		int	generateRdmN(int numbers);
 };
+
+class A : public Base {};
+class B : public Base {};
+class C : public Base {};
 
 #endif
