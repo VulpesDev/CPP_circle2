@@ -3,6 +3,8 @@
 
 # include <iostream>
 # include <string>
+# include <stack>
+# include <sstream>
 
 class RPN
 {
@@ -15,7 +17,17 @@ class RPN
 
 		RPN &		operator=( RPN const & rhs );
 
+		static int	calculate(std::string s);
+
+		class InvalidSymbolException : public std::exception {
+			public :
+				const char* what() const throw(){
+					return "Error";
+				}
+		};
+
 	private:
+		static std::stack<int> num_stack;
 
 };
 

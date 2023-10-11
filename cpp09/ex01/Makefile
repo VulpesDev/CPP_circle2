@@ -1,6 +1,6 @@
 CC = c++
 
-CFLAGS = 
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 NAME = RPN
 
