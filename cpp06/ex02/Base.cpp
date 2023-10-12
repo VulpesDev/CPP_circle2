@@ -55,10 +55,22 @@ void Base::identify(Base* p)
 
 void Base::identify(Base& p)
 {
-	if (dynamic_cast<A*>(&p))
+	try
+	{
+		(void)dynamic_cast<A&>(p);
 		std::cout << "A" << std::endl;
-	else if (dynamic_cast<B*>(&p))
+	}
+	catch(...){}
+	try
+	{
+		(void)dynamic_cast<B&>(p);
 		std::cout << "B" << std::endl;
-	else if (dynamic_cast<C*>(&p))
+	}
+	catch(...){}
+	try
+	{
+		(void)dynamic_cast<C&>(p);
 		std::cout << "C" << std::endl;
+	}
+	catch(...){}
 }
