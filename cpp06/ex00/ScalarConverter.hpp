@@ -13,7 +13,7 @@ class ScalarConverter
 		static void	convert(std::string s);
 
 	private:
-
+		ScalarConverter();
 };
 
 #endif /* ************************************************* SCALARCONVERTER_H */

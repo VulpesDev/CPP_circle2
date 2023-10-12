@@ -16,7 +16,7 @@ class FloatValueConverter : public AValueConverter
 		FloatValueConverter &	operator=(FloatValueConverter const & rhs);
 		float	getValue() const;
 	private:
-		long double value;
+		float value;
 
 };
 

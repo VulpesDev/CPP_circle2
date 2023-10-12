@@ -8,7 +8,7 @@ DoubleValueConverter::DoubleValueConverter(std::string s)
 {
 	s_rep << std::fixed << std::setprecision(1);
 	s_rep << "double: ";
-	value = std::strtold(s.c_str(), 0);
+	value = std::strtod(s.c_str(), 0);
 	if (std::isnan(value) || (!value && s.at(0) != '0'))
 		s_rep << "nan";
 	else if (std::isinf(value))
@@ -19,7 +19,7 @@ DoubleValueConverter::DoubleValueConverter(std::string s)
 			s_rep << "+inf";
 	}
 	else
-		s_rep << (double)value;
+		s_rep << static_cast<double>(value);
 }
 
 DoubleValueConverter::DoubleValueConverter( const DoubleValueConverter & src )

@@ -8,7 +8,7 @@ FloatValueConverter::FloatValueConverter(std::string s)
 {
 	s_rep << std::fixed << std::setprecision(1);
 	s_rep << "float: ";
-	value = std::strtold(s.c_str(), 0);
+	value = std::strtof(s.c_str(), 0);
 	if (std::isnan(value) || (!value && s.at(0) != '0'))
 		s_rep << "nanf";
 	else if (std::isinf(value))
@@ -19,7 +19,7 @@ FloatValueConverter::FloatValueConverter(std::string s)
 			s_rep << "+inff";
 	}
 	else
-		s_rep << (double)value << "f";
+		s_rep << static_cast<float>(value) << "f";
 }
 
 FloatValueConverter::FloatValueConverter(FloatValueConverter const & src)

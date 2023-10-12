@@ -19,7 +19,7 @@ IntValueConverter::IntValueConverter(std::string s)
 	else if (s.at(0) != '-' && (s.length() > 10 || v > INT_MAX))
 		s_rep << "+inf";
 	else
-		s_rep << value;
+		s_rep << static_cast<int>(value);
 }
 
 IntValueConverter::IntValueConverter(IntValueConverter const & src)
