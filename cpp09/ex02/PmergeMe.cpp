@@ -72,7 +72,8 @@ void	PmergeMe::sort()
 			*--i->end() = temp;
 		}
 		small.push_back(*i->begin());
-		big.push_back(*--i->end());
+		if (i->begin() != --i->end())
+			big.push_back(*--i->end());
 	}
 	std::sort(small.begin(), small.end());
 	for (std::vector<unsigned int>::iterator i = big.begin(); i != big.end(); i++)
