@@ -5,6 +5,7 @@
 # include <iostream>
 # include <string>
 # include <vector>
+# include <deque>
 # include <cmath>
 # include <climits>
 
@@ -22,7 +23,9 @@ class PmergeMe
 		void	insert(unsigned int value);
 		void	insert(std::string value);
 		void	print();
-		void	sort();
+		void	sort_vec();
+		void	sort_deque();
+		size_t	size();
 
 		class OutOfRangeException : public std::exception {
 			public :
@@ -33,6 +36,7 @@ class PmergeMe
 
 	private:
 		std::vector<unsigned int>	data;
+		std::deque<unsigned int>	data2;
 
 };
 
