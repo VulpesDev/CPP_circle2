@@ -11,7 +11,7 @@ int	main(int argc, char **argv)
 	PmergeMe	p;
 	for (size_t i = 1; i < argc; i++)
 	{
-		p.insert(std::atoi(argv[i]));
+		p.insert(argv[i]);
 	}
 	
 	std::cout << "Before:" << std::endl;

@@ -88,6 +88,17 @@ void	PmergeMe::insert(unsigned int value)
 {
 	data.push_back(value);
 }
+
+void	PmergeMe::insert(std::string value)
+{
+	long long	v = std::stoll(value);
+	unsigned int	val = std::stol(value);
+	// std::cout << "v: " << v << std::endl;
+	if ((v < 0) || (value.length() > 10 || v > UINT32_MAX))
+		throw OutOfRangeException();
+	data.push_back(val);
+}
+
 void	PmergeMe::print()
 {
 	for (std::vector<unsigned int>::iterator i = data.begin(); i != data.end(); i++)

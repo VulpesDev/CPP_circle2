@@ -5,6 +5,8 @@
 # include <iostream>
 # include <string>
 # include <vector>
+# include <cmath>
+# include <climits>
 
 class PmergeMe
 {
@@ -18,8 +20,16 @@ class PmergeMe
 		PmergeMe &		operator=( PmergeMe const & rhs );
 
 		void	insert(unsigned int value);
+		void	insert(std::string value);
 		void	print();
 		void	sort();
+
+		class OutOfRangeException : public std::exception {
+			public :
+				const char* what() const throw(){
+					return "OutOfRange";
+				}
+		};
 
 	private:
 		std::vector<unsigned int>	data;
