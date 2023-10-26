@@ -24,7 +24,7 @@ void	Span::addNumber(int value)
 
 int		Span::shortestSpan(void)
 {
-	int result = 2147483647;
+	int result = INT_MAX;
 	std::multiset<int>	cpy(set);
 	if (set.size() <= 1)
 	{

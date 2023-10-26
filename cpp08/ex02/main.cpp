@@ -1,5 +1,6 @@
 #include "MutantStack.hpp"
 #include <iostream>
+# include <vector>
 
 int main()
 {
@@ -18,12 +19,23 @@ int main()
 	MutantStack<int>::iterator ite = mstack.end();
 	++it;
 	--it;
+	std::cout << "Forward way:" << std::endl;
+
 	while (it != ite)
 	{
 	std::cout << *it << std::endl;
 	++it;
 	}
-	std::stack<int> s(mstack);
+
+	std::cout << "Reverse way:" << std::endl;
+	MutantStack<int>::reverse_iterator rit = mstack.rbegin();
+	MutantStack<int>::reverse_iterator rite = mstack.rend();
+	while (rit != rite)
+	{
+	std::cout << *rit << std::endl;
+	++rit;
+	}
+	//std::stack<int> s(mstack);
 	return 0;
 }
 #include <list>
