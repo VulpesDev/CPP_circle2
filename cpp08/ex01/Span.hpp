@@ -1,7 +1,7 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
-# include <set>
+# include <vector>
 # include <algorithm>
 # include <iterator>
 # include <iostream>
@@ -11,12 +11,16 @@ class Span
 {
 private:
 	unsigned int		maxsize;
-	std::multiset<int>	set;
+	std::vector<int>	set;
 public:
 	Span( unsigned int N );
 	Span( const Span & cpy );
 	~Span();
+	Span	&operator=(Span const &t);
+	
 	void	addNumber(int value);
+	void	addRange(std::vector<int>::iterator begin,
+                    std::vector<int>::iterator end);
 	int		shortestSpan(void);
 	int		longestSpan(void);
 
