@@ -10,6 +10,7 @@ PmergeMe::PmergeMe()
 
 PmergeMe::PmergeMe( const PmergeMe & src )
 {
+	*this = src;
 }
 
 
@@ -28,16 +29,28 @@ PmergeMe::~PmergeMe()
 
 PmergeMe &				PmergeMe::operator=( PmergeMe const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->data = rhs.GetData();
+		this->data2 = rhs.GetData2();
+	}
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, PmergeMe const & i )
 {
-	//o << "Value = " << i.getValue();
+	std::vector<unsigned int> data = i.GetData();
+	std::deque<unsigned int> data2 = i.GetData2();
+	for (std::vector<unsigned int>::const_iterator it = data.begin(); it != data.end(); it++)
+	{
+		o << *it << " ";
+	}
+	o << std::endl;
+	for (std::deque<unsigned int>::const_iterator it = data2.begin(); it != data2.end(); it++)
+	{
+		o << *it << " ";
+	}
+	o << std::endl;
 	return o;
 }
 
@@ -49,7 +62,7 @@ std::ostream &			operator<<( std::ostream & o, PmergeMe const & i )
 void	PmergeMe::sort_vec()
 {
 	std::vector<unsigned int> small, big;
-	std::vector<std::vector<unsigned int>>	vecOfVecs;
+	std::vector< std::vector<unsigned int> >	vecOfVecs;
 	for (std::vector<unsigned int>::iterator k = data.begin(); k != data.end(); ++k)
 	{
 		std::vector<unsigned int>::iterator i = k;
@@ -63,7 +76,7 @@ void	PmergeMe::sort_vec()
 		if (k == data.end())
 			break;
 	}
-	for (std::vector<std::vector<unsigned int>>::iterator i = vecOfVecs.begin(); i != vecOfVecs.end(); i++)
+	for (std::vector< std::vector<unsigned int> >::iterator i = vecOfVecs.begin(); i != vecOfVecs.end(); i++)
 	{
 		if (i->begin() != --i->end() && *i->begin() > *--i->end())
 		{
@@ -87,7 +100,7 @@ void	PmergeMe::sort_vec()
 void	PmergeMe::sort_deque()
 {
 	std::deque<unsigned int> small, big;
-	std::deque<std::deque<unsigned int>>	vecOfVecs;
+	std::deque< std::deque<unsigned int> >	vecOfVecs;
 	for (std::deque<unsigned int>::iterator k = data2.begin(); k != data2.end(); ++k)
 	{
 		std::deque<unsigned int>::iterator i = k;
@@ -101,7 +114,7 @@ void	PmergeMe::sort_deque()
 		if (k == data2.end())
 			break;
 	}
-	for (std::deque<std::deque<unsigned int>>::iterator i = vecOfVecs.begin(); i != vecOfVecs.end(); i++)
+	for (std::deque< std::deque<unsigned int> >::iterator i = vecOfVecs.begin(); i != vecOfVecs.end(); i++)
 	{
 		if (i->begin() != --i->end() && *i->begin() > *--i->end())
 		{
@@ -130,9 +143,9 @@ void	PmergeMe::insert(unsigned int value)
 
 void	PmergeMe::insert(std::string value)
 {
-	long long	v = std::stoll(value);
-	unsigned int	val = std::stol(value);
-	if ((v < 0) || (value.length() > 10 || v > UINT32_MAX))
+	long long	v = std::atoll(value.c_str());
+	unsigned int	val = std::atol(value.c_str());
+	if ((v < 0) || (value.length() > 10 || v > UINT_MAX))
 		throw OutOfRangeException();
 	data.push_back(val);
 	data2.push_back(val);
@@ -161,5 +174,14 @@ size_t	PmergeMe::size()
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
+std::vector<unsigned int> PmergeMe::GetData() const
+{
+	return data;
+}
+
+std::deque<unsigned int> PmergeMe::GetData2() const
+{
+	return data2;
+}
 
 /* ************************************************************************** */

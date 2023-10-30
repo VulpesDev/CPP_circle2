@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	PmergeMe	p;
-	for (size_t i = 1; i < argc; i++)
+	for (int i = 1; i < argc; i++)
 	{
 		try{
 			p.insert(argv[i]);

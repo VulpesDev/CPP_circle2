@@ -27,6 +27,9 @@ class PmergeMe
 		void	sort_deque();
 		size_t	size();
 
+		std::vector<unsigned int> GetData() const;
+		std::deque<unsigned int> GetData2() const;
+
 		class OutOfRangeException : public std::exception {
 			public :
 				const char* what() const throw(){
