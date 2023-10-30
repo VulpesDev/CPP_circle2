@@ -54,7 +54,7 @@ std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
             bitValue = std::strtod(i.csv_data.lower_bound(it->first)->second.c_str(), 0);
             bitCount = std::strtod(it->second.c_str(), 0);
         }
-        if (!i.format_check(it, bitCount))
+        if ((it == i.input_data.begin() && it->first == "date" && it->second == "value") || !i.format_check(it, bitCount))
            	o << it->first << " => " << bitCount << " = " << bitCount*bitValue << std::endl;
     }
 	return o;
@@ -82,10 +82,74 @@ std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
     	return (1);
 	}
 
+	bool	isLeapYear(int year)
+	{
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+   		     return true; // Leap year
+   		 } else {
+   		     return false; // Non-leap year
+    }
+	}
+
+	bool isDigitsOnly(const std::string &str) {
+	    for (std::string::const_iterator it = str.begin(); it != str.end(); ++it) {
+	        if (!std::isdigit(*it)) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+
+	int			BitcoinExchange::date_format_check( std:: string s ) const
+	{
+		int y, m, d, counter = 0;
+		std::istringstream ss(s);
+		std::multimap<int, std::string> tokens;
+		std::string token;
+
+		while (std::getline(ss, token, '-'))
+		{
+			tokens.insert(std::make_pair(counter, token));
+			counter++;
+		}
+		if (counter != 3)
+			return 0;
+		const char * y_str = tokens.find(0)->second.c_str(),
+		* m_str = tokens.find(1)->second.c_str(),
+		* d_str = tokens.find(2)->second.c_str();
+		if (!isDigitsOnly(y_str) || !isDigitsOnly(m_str) || !isDigitsOnly(d_str))
+			return 0;
+		try
+		{
+			y = atoi(y_str);
+			m = atoi(m_str);
+			d = atoi(d_str);
+		}
+		catch(const std::exception& e)
+		{
+			return 0;
+		}
+		if (y < 1 || m < 1 || m > 12 || d < 1)
+			return 0;
+		static const int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		if (isLeapYear(y) && m == 2)
+		{
+		    if (d <= 29)
+		        return 1;
+		}
+		 else
+		 {
+		     if (d <= daysInMonth[m])
+		         return 1;
+		 }
+		return 0;
+		
+	}
+
 	int     	BitcoinExchange::format_check(const std::map<std::string, std::string>::const_iterator it,
 							long double bitCount) const
 	{
-			if (it->first.empty() || it->second.empty())
+			if (it->first.empty() || it->second.empty() || !date_format_check(it->first))
    			     return err("bad input => " + (it->first.empty()? it->second.empty()? NULL : it->second : it->first));
    			 else if (bitCount < 0)
    			     return err("not a positive number.");

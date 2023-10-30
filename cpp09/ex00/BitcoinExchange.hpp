@@ -8,6 +8,8 @@
 # include <sstream>
 # include <climits>
 # include <stdlib.h>
+# include <cstdlib>
+# include <cctype>
 
 class BitcoinExchange
 {
@@ -34,6 +36,7 @@ class BitcoinExchange
 							int columnKey, int columnValue,
 							std::multimap<std::string, std::string> &result,
 							char denom);
+		int			date_format_check( std:: string s ) const;
 };
 
 std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i );
