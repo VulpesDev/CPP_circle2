@@ -54,7 +54,7 @@ std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
             bitValue = std::strtod(i.csv_data.lower_bound(it->first)->second.c_str(), 0);
             bitCount = std::strtod(it->second.c_str(), 0);
         }
-        if ((it == i.input_data.begin() && it->first == "date" && it->second == "value") || !i.format_check(it, bitCount))
+        if (it->first != "date" && it->second != "value" && !i.format_check(it, bitCount))
            	o << it->first << " => " << bitCount << " = " << bitCount*bitValue << std::endl;
     }
 	return o;
