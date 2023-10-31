@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include <cstring>
 # include <stack>
 # include <sstream>
 
@@ -23,6 +24,13 @@ class RPN
 			public :
 				const char* what() const throw(){
 					return "Error";
+				}
+		};
+
+		class DException : public std::exception {
+			public :
+				const char* what() const throw(){
+					return "OutOfRange";
 				}
 		};
 

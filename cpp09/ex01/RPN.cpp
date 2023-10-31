@@ -57,6 +57,8 @@ int	RPN::calculate(std::string s)
 	{
 		if (!token.empty())
 		{
+			if(std::strchr(token.c_str(), '(') || std::strchr(token.c_str(), ')') || std::strchr(token.c_str(), '.'))
+				throw std::runtime_error("Error");
 			if (isdigit(token.at(0)))
 			{
 				std::stringstream	toint(token);
@@ -83,6 +85,8 @@ int	RPN::calculate(std::string s)
 						num_stack.push(val2-val1);
 						break;
 					case '/':
+						if (val1 == 0)
+							throw std::runtime_error("Division by zero");
 						num_stack.push(val2/val1);
 						break;
 					case '*':
