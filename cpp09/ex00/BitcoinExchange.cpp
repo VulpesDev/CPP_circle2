@@ -44,14 +44,44 @@ BitcoinExchange &				BitcoinExchange::operator=( BitcoinExchange const & rhs )
 	return *this;
 }
 
+#include <ctime>
+std::tm ParseDate(const std::string& dateStr)
+{
+    std::tm parsedDate = {};
+    if (strptime(dateStr.c_str(), "%Y-%m-%d", &parsedDate) == NULL)
+    {
+        // Parsing failed, handle the error as needed.
+        // You might want to throw an exception or return an invalid date.
+    }
+    return parsedDate;
+}
+
+bool DateLess(const std::string& dateStr1, const std::string& dateStr2)
+{
+    std::tm time1 = ParseDate(dateStr1);
+    std::tm time2 = ParseDate(dateStr2);
+
+    return std::difftime(std::mktime(&time1), std::mktime(&time2)) <= 0;
+}
+
+std::string	SearchLesserDay(std::string input_data, std::multimap<std::string, std::string> csv_data)
+{
+	for (std::multimap<std::string, std::string>::const_reverse_iterator it2 = csv_data.rbegin(); it2 != csv_data.rend(); ++it2)
+   	{
+		if (DateLess(it2->first, input_data) && it2->first != "date")
+			return it2->first;
+	}
+	return csv_data.begin()->first;
+}
+
 std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
 {
-	for (std::map<std::string, std::string>::const_iterator it = i.input_data.begin(); it != i.input_data.end(); ++it)
+	for (std::multimap<std::string, std::string>::const_iterator it = i.input_data.begin(); it != i.input_data.end(); ++it)
     {
         double bitCount = 0, bitValue = 1;
         if (!it->first.empty() && !it->second.empty())
         {
-            bitValue = std::strtod(i.csv_data.lower_bound(it->first)->second.c_str(), 0);
+            bitValue = std::strtod(i.csv_data.find(SearchLesserDay(it->first, i.csv_data))->second.c_str(), 0);
             bitCount = std::strtod(it->second.c_str(), 0);
         }
         if (it->first != "date" && it->second != "value" && !i.format_check(it, bitCount))

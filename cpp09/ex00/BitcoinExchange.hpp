@@ -37,6 +37,7 @@ class BitcoinExchange
 							std::multimap<std::string, std::string> &result,
 							char denom);
 		int			date_format_check( std:: string s ) const;
+		std::string	actualDate;
 };
 
 std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i );
