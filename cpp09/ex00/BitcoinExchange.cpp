@@ -44,15 +44,13 @@ BitcoinExchange &				BitcoinExchange::operator=( BitcoinExchange const & rhs )
 	return *this;
 }
 
-#include <ctime>
+
+
+// OTHER FUNCTIONS ////////////
 std::tm ParseDate(const std::string& dateStr)
 {
     std::tm parsedDate = {};
-    if (strptime(dateStr.c_str(), "%Y-%m-%d", &parsedDate) == NULL)
-    {
-        // Parsing failed, handle the error as needed.
-        // You might want to throw an exception or return an invalid date.
-    }
+    strptime(dateStr.c_str(), "%Y-%m-%d", &parsedDate);
     return parsedDate;
 }
 
@@ -73,6 +71,9 @@ std::string	SearchLesserDay(std::string input_data, std::multimap<std::string, s
 	}
 	return csv_data.begin()->first;
 }
+// OTHER FUNCTIONS ////////////
+
+
 
 std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
 {
@@ -95,6 +96,9 @@ std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+
+
+// OTHER FUNCTIONS ////////////
 	std::string	BitcoinExchange::noSpace(const std::string &s)
 	{
 		std::string result;
@@ -130,7 +134,7 @@ std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
 	    return true;
 	}
 
-	int			BitcoinExchange::date_format_check( std:: string s ) const
+	int			date_format_check( std:: string s )
 	{
 		int y, m, d, counter = 0;
 		std::istringstream ss(s);
@@ -175,6 +179,10 @@ std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
 		return 0;
 		
 	}
+		// OTHER FUNCTIONS ////////////
+
+
+
 
 	int     	BitcoinExchange::format_check(const std::map<std::string, std::string>::const_iterator it,
 							long double bitCount) const
